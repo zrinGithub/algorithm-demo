@@ -1,6 +1,8 @@
 package chapter1;
 
 
+import java.util.Arrays;
+
 /**
  * Description:
  *
@@ -43,7 +45,32 @@ public class ArrayOperTest {
         }
     }
 
+    //这里没有验证参数
+    public static double[][] matrixMultiplication(double[][] a, double[][] b) {
+        int row = a.length;
+        int col = b[0].length;
+        int inner = b.length;
+        double[][] result = new double[row][col];
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                for (int k = 0; k < inner; k++) {
+                    result[i][j] += a[i][k] * b[k][j];
+                }
+            }
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
-        System.out.println(findMax(new double[]{12.3, 12.6, 1.03}));
+//        System.out.println(findMax(new double[]{12.3, 12.6, 1.03}));
+        double[][] a = {{1, 0, 2}, {-1, 3, 1}};
+        double[][] b = {{3, 1}, {2, 1}, {1, 0}};
+        final double[][] doubles = matrixMultiplication(a, b);
+        for (int i = 0; i < doubles.length; i++) {
+            final double[] inner = doubles[i];
+            for (int j = 0; j < inner.length; j++)
+                System.out.print(doubles[i][j]+"\t");
+            System.out.println();
+        }
     }
 }
